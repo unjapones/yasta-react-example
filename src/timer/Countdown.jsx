@@ -1,5 +1,11 @@
 import React from 'react';
 
+import {
+  getSecsFieldFromDuration,
+  getMinsFieldFromDuration,
+  getHoursFieldFromDuration,
+} from './durationHelpers';
+
 /**
  * Countdown that displays time left in seconds.
  * Properties:
@@ -47,8 +53,14 @@ class Countdown extends React.Component {
 
   render() {
     const { timeLeft } = this.state;
+    const hours = getHoursFieldFromDuration(timeLeft);
+    const mins = getMinsFieldFromDuration(timeLeft);
+    const secs = getSecsFieldFromDuration(timeLeft);
+
+    const minsPadded = mins < 10 ? `0${mins}` : mins;
+    const secsPadded = secs < 10 ? `0${secs}` : secs;
     return (
-      <span>Time left: {timeLeft} seconds...</span>
+      <span>Time left: {hours}:{minsPadded}:{secsPadded}</span>
     );
   }
 }
