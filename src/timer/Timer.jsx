@@ -3,13 +3,16 @@ import React from 'react';
 import Countdown from './Countdown';
 import DurationConfig from './DurationConfig';
 
+const DEFAULT_DURATION = 4; // Seconds
+
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      duration: 4, // In seconds
+      duration: DEFAULT_DURATION,
+      remainingTime: DEFAULT_DURATION,
       started: false,
-      timeoutId: null
+      intervalId: null,
     };
 
     this.startTimer = this.startTimer.bind(this);
@@ -24,23 +27,29 @@ class Timer extends React.Component {
   }
 
   startTimer() {
-    const timeoutId = setTimeout(
+    const intervalId = setInterval(
       () => {
-        window.alert('Ding!');
-        this.setState({ started: false });
+        if (this.state.remainingTime === 0) {
+          clearInterval(this.state.intervalId);
+          window.alert('Ding!');
+          this.setState({ started: false });
+        } else {
+          this.setState({ remainingTime: this.state.remainingTime - 1 });
+        }
       },
-      this.state.duration * 1000,
+      1000,
     );
+
     this.setState({
-      timeoutId,
+      intervalId,
+      remainingTime: this.state.duration,
       started: true,
     });
   }
 
   cancel() {
-    clearTimeout(this.state.timeoutId);
+    clearInterval(this.state.intervalId);
     this.setState({
-      timeoutId: null,
       started: false,
     });
   }
@@ -67,7 +76,7 @@ class Timer extends React.Component {
   renderStarted() {
     return (
       <p>
-        <Countdown duration={this.state.duration} />
+        <Countdown remainingTime={this.state.remainingTime} />
         <button typ="button" onClick={this.cancel}>Cancel</button>
       </p>
     );
