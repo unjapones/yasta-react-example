@@ -17,8 +17,8 @@ class Timer extends React.Component {
     this.setNewDuration = this.setNewDuration.bind(this);
   }
 
-  setNewDuration(evt) {
-    this.setState({ duration: evt.target.value || 0 });
+  setNewDuration(duration) {
+    this.setState({ duration: duration || 0 });
   }
 
   startTimer() {
