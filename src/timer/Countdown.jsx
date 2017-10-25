@@ -1,5 +1,8 @@
 import React from 'react';
 
+import CircularProgressbar from 'react-circular-progressbar';
+import './Countdown.css';
+
 import {
   getSecsFieldFromDuration,
   getMinsFieldFromDuration,
@@ -10,15 +13,23 @@ import {
  * Countdown that displays time left in seconds.
  */
 export function Countdown(props) {
-  const timeLeft = props.remainingTime;
-  const hours = getHoursFieldFromDuration(timeLeft);
-  const mins = getMinsFieldFromDuration(timeLeft);
-  const secs = getSecsFieldFromDuration(timeLeft);
+  const { remainingTime, duration } = props;
+
+  const hours = getHoursFieldFromDuration(remainingTime);
+  const mins = getMinsFieldFromDuration(remainingTime);
+  const secs = getSecsFieldFromDuration(remainingTime);
 
   const minsPadded = mins < 10 ? `0${mins}` : mins;
   const secsPadded = secs < 10 ? `0${secs}` : secs;
+  const timeLeftString = `${hours}:${minsPadded}:${secsPadded}`;
+
+  const percentage = 100 - Math.floor((remainingTime / duration) * 100);
+
   return (
-    <span>Time left: {hours}:{minsPadded}:{secsPadded}</span>
+    <CircularProgressbar
+      textForPercentage={() => timeLeftString}
+      percentage={percentage}
+    />
   );
 }
 

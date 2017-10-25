@@ -101,11 +101,14 @@ class Timer extends React.Component {
       (<button type="button" onClick={this.pause}>Pause</button>);
 
     return (
-      <p>
-        <Countdown remainingTime={this.state.remainingTime} />
+      <div>
+        <Countdown
+          duration={this.state.duration}
+          remainingTime={this.state.remainingTime}
+        />
         {playPauseButton}
         <button type="button" onClick={this.cancel}>Cancel</button>
-      </p>
+      </div>
     );
   }
 
