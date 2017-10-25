@@ -11,12 +11,16 @@ class Timer extends React.Component {
     this.state = {
       duration: DEFAULT_DURATION,
       remainingTime: DEFAULT_DURATION,
+      paused: false,
       started: false,
       intervalId: null,
     };
 
-    this.startTimer = this.startTimer.bind(this);
+    this.start = this.start.bind(this);
     this.setNewDuration = this.setNewDuration.bind(this);
+    this.createCountDown = this.createCountDown.bind(this);
+    this.pause = this.pause.bind(this);
+    this.resume = this.resume.bind(this);
     this.cancel = this.cancel.bind(this);
     this.renderDefault = this.renderDefault.bind(this);
     this.renderStarted = this.renderStarted.bind(this);
@@ -26,10 +30,10 @@ class Timer extends React.Component {
     this.setState({ duration: duration || 0 });
   }
 
-  startTimer() {
-    const intervalId = setInterval(
+  createCountDown() {
+    return setInterval(
       () => {
-        if (this.state.remainingTime === 0) {
+        if (this.state.remainingTime === 1) {
           clearInterval(this.state.intervalId);
           window.alert('Ding!');
           this.setState({ started: false });
@@ -39,11 +43,28 @@ class Timer extends React.Component {
       },
       1000,
     );
+  }
 
+  start() {
     this.setState({
-      intervalId,
+      intervalId: this.createCountDown(),
       remainingTime: this.state.duration,
       started: true,
+    });
+  }
+
+  pause() {
+    clearInterval(this.state.intervalId);
+    this.setState({
+      paused: true,
+      intervalId: null,
+    });
+  }
+
+  resume() {
+    this.setState({
+      intervalId: this.createCountDown(),
+      paused: false,
     });
   }
 
@@ -51,6 +72,7 @@ class Timer extends React.Component {
     clearInterval(this.state.intervalId);
     this.setState({
       started: false,
+      paused: false,
     });
   }
 
@@ -64,7 +86,7 @@ class Timer extends React.Component {
         />
         <button
           type="button"
-          onClick={this.startTimer}
+          onClick={this.start}
           disabled={duration <= 0}
         >
           Start
@@ -74,10 +96,15 @@ class Timer extends React.Component {
   }
 
   renderStarted() {
+    const playPauseButton = this.state.paused ?
+      (<button type="button" onClick={this.resume}>Resume</button>) :
+      (<button type="button" onClick={this.pause}>Pause</button>);
+
     return (
       <p>
         <Countdown remainingTime={this.state.remainingTime} />
-        <button typ="button" onClick={this.cancel}>Cancel</button>
+        {playPauseButton}
+        <button type="button" onClick={this.cancel}>Cancel</button>
       </p>
     );
   }
