@@ -19,9 +19,10 @@ export function Countdown(props) {
   const mins = getMinsFieldFromDuration(remainingTime);
   const secs = getSecsFieldFromDuration(remainingTime);
 
+  const hoursPadded = mins < 10 ? `0${hours}` : hours;
   const minsPadded = mins < 10 ? `0${mins}` : mins;
   const secsPadded = secs < 10 ? `0${secs}` : secs;
-  const timeLeftString = `${hours}:${minsPadded}:${secsPadded}`;
+  const timeLeftString = `${hoursPadded}:${minsPadded}:${secsPadded}`;
 
   const percentage = 100 - Math.floor((remainingTime / duration) * 100);
 
