@@ -98,8 +98,8 @@ class Timer extends React.Component {
 
   renderStarted() {
     const playPauseButton = this.state.isTicking ?
-      (<button type="button" onClick={this.resume}>Resume</button>) :
-      (<button type="button" onClick={this.pause}>Pause</button>);
+      (<button type="button" onClick={this.pause}>Pause</button>) :
+      (<button type="button" onClick={this.resume}>Resume</button>);
 
     return (
       <div>

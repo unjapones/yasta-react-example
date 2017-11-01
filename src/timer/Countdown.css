@@ -15,7 +15,7 @@
 }
 
 .CircularProgressbar .CircularProgressbar-path {
-  stroke: #3e98c7;
+  stroke: #32cd32;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease 0s;
 }
@@ -25,7 +25,7 @@
 }
 
 .CircularProgressbar .CircularProgressbar-text {
-  fill: #3e98c7;
+  fill: #000000;
   font-size: 20px;
   dominant-baseline: middle;
   text-anchor: middle;
@@ -35,27 +35,22 @@
   fill: #d6d6d6;
 }
 
-/*
- * Sample background styles. Use these with e.g.:
- *
- *   <CircularProgressbar
- *     className="CircularProgressbar-inverted"
- *     background
- *     percentage={50}
- *   />
- */
-.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
-  fill: #3e98c7;
+.CircularProgressbar.paused .CircularProgressbar-path {
+  stroke: #a9a9a9;
+}
+.CircularProgressbar.paused .CircularProgressbar-text {
+  fill: #a9a9a9;
 }
 
-.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+.CircularProgressbar.done .CircularProgressbar-path {
+  stroke: none;
+}
+.CircularProgressbar.done .CircularProgressbar-trail {
+  stroke: none;
+}
+.CircularProgressbar.done .CircularProgressbar-background {
+  fill: #ff0000;
+}
+.CircularProgressbar.done .CircularProgressbar-text {
   fill: #fff;
-}
-
-.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
-  stroke: #fff;
-}
-
-.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
-  stroke: transparent;
 }
