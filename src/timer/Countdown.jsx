@@ -10,6 +10,8 @@ import {
   getHoursFieldFromDuration,
 } from './durationHelpers';
 
+const CLASSNAME_BASE = 'countdown';
+
 /**
  * Countdown that displays time left in seconds.
  */
@@ -28,6 +30,7 @@ export function Countdown(props) {
   const percentage = 100 - Math.floor((remainingTime / duration) * 100);
 
   const className = cx({
+    [CLASSNAME_BASE]: true,
     paused: remainingTime > 0 && !isTicking,
     done: remainingTime === 0,
   });

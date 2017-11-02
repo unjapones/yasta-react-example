@@ -1,9 +1,18 @@
 import React from 'react';
+import cx from 'classnames';
 
 import Countdown from './Countdown';
 import DurationConfig from './DurationConfig';
 
+import './Timer.css';
+
 const DEFAULT_DURATION = 4; // Seconds
+const CLASSNAME_BASE = 'timer';
+const CLASSNAME_SETUP = 'setup';
+const CLASSNAME_COUNTDOWN = 'countdown';
+const CLASSNAME_BUTTON_TOGGLE_PAUSE = 'toggle-pause';
+const CLASSNAME_BUTTON_RESET = 'reset';
+const CLASSNAME_BUTTON_START = 'start';
 
 class Timer extends React.Component {
   constructor(props) {
@@ -80,13 +89,14 @@ class Timer extends React.Component {
   renderDurationConfig() {
     const { duration } = this.state;
     return (
-      <div className="timer">
+      <div className={cx(CLASSNAME_BASE, CLASSNAME_SETUP)}>
         <DurationConfig
           duration={duration}
           onDurationChange={this.setNewDuration}
         />
         <button
           type="button"
+          className={CLASSNAME_BUTTON_START}
           onClick={this.start}
           disabled={duration <= 0}
         >
@@ -97,19 +107,35 @@ class Timer extends React.Component {
   }
 
   renderStarted() {
-    const playPauseButton = this.state.isTicking ?
-      (<button type="button" onClick={this.pause}>Pause</button>) :
-      (<button type="button" onClick={this.resume}>Resume</button>);
+    const pauseResumeButton = (
+      <button
+        type="button"
+        className={CLASSNAME_BUTTON_TOGGLE_PAUSE}
+        onClick={this.state.isTicking ? this.pause : this.resume}
+        disabled={this.state.remainingTime === 0}
+      >
+        { this.isTicking ? 'Pause' : 'Resume' }
+      </button>
+    );
+    const resetButton = (
+      <button
+        type="button"
+        className={CLASSNAME_BUTTON_RESET}
+        onClick={this.reset}
+      >
+        Reset
+      </button>
+    );
 
     return (
-      <div>
+      <div className={cx(CLASSNAME_BASE, CLASSNAME_COUNTDOWN)}>
         <Countdown
           isTicking={this.state.isTicking}
           duration={this.state.duration}
           remainingTime={this.state.remainingTime}
         />
-        { this.state.remainingTime > 0 ? playPauseButton : null }
-        <button type="button" onClick={this.reset}>Reset</button>
+        { pauseResumeButton }
+        { resetButton }
       </div>
     );
   }

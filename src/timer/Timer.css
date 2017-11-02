@@ -1,0 +1,33 @@
+.timer {
+  display: grid;
+
+  width: 100%;
+  heigth: 100%;
+
+  grid-template-columns: 10px 1fr 1fr 10px ;
+  grid-template-rows: 10px 7fr 1fr 10px ;
+  grid-gap: 1rem;
+}
+
+.setup {
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+}
+button.start {
+  grid-row: 3 / 4;
+  grid-column: 2 / 4;
+}
+
+.countdown {
+  grid-row: 2 / 3;
+  grid-column: 2 / 4;
+}
+
+button.toggle-pause {
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+}
+button.reset {
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+}
