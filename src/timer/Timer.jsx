@@ -8,7 +8,6 @@ import './Timer.css';
 
 const DEFAULT_DURATION = 4; // Seconds
 const CLASSNAME_BASE = 'timer';
-const CLASSNAME_SETUP = 'setup';
 const CLASSNAME_COUNTDOWN = 'countdown';
 const CLASSNAME_BUTTON_TOGGLE_PAUSE = 'toggle-pause';
 const CLASSNAME_BUTTON_RESET = 'reset';
@@ -89,7 +88,7 @@ class Timer extends React.Component {
   renderDurationConfig() {
     const { duration } = this.state;
     return (
-      <div className={cx(CLASSNAME_BASE, CLASSNAME_SETUP)}>
+      <div className={CLASSNAME_BASE}>
         <DurationConfig
           duration={duration}
           onDurationChange={this.setNewDuration}
@@ -114,7 +113,7 @@ class Timer extends React.Component {
         onClick={this.state.isTicking ? this.pause : this.resume}
         disabled={this.state.remainingTime === 0}
       >
-        { this.isTicking ? 'Pause' : 'Resume' }
+        { this.state.isTicking ? 'Pause' : 'Resume' }
       </button>
     );
     const resetButton = (

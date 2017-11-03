@@ -22,7 +22,7 @@ export function Countdown(props) {
   const mins = getMinsFieldFromDuration(remainingTime);
   const secs = getSecsFieldFromDuration(remainingTime);
 
-  const hoursPadded = mins < 10 ? `0${hours}` : hours;
+  const hoursPadded = hours < 10 ? `0${hours}` : hours;
   const minsPadded = mins < 10 ? `0${mins}` : mins;
   const secsPadded = secs < 10 ? `0${secs}` : secs;
   const timeLeftString = `${hoursPadded}:${minsPadded}:${secsPadded}`;
