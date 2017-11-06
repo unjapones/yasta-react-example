@@ -2,7 +2,7 @@
   display: grid;
 
   width: 100%;
-  heigth: 100%;
+  height: 80vh;
 
   grid-template-columns: 10px 1fr 1fr 10px ;
   grid-template-rows: 10px 7fr 1fr 10px ;
@@ -16,6 +16,7 @@
 button.start {
   grid-row: 3 / 4;
   grid-column: 2 / 4;
+  font-size: 2em;
 }
 
 .countdown {
@@ -26,8 +27,10 @@ button.start {
 button.toggle-pause {
   grid-row: 3 / 4;
   grid-column: 2 / 3;
+  font-size: 2em;
 }
 button.reset {
   grid-row: 3 / 4;
   grid-column: 3 / 4;
+  font-size: 2em;
 }

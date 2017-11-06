@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import cx from 'classnames';
 
 import TimePicker from 'rc-time-picker';
 import 'rc-time-picker/assets/index.css';
@@ -9,8 +10,14 @@ import {
   getMinsFieldFromDuration,
   getHoursFieldFromDuration,
 } from './durationHelpers';
+import './DurationConfig.css';
 
 const CLASSNAME_BASE = 'setup';
+const CLASSNAME_INPUT_CONTAINER = 'input-container';
+const CLASSNAME_OPEN_TIMEPICKER_POPUP = 'open-time-picker';
+const CLASSNAME_TIMEPICKER = 'time-picker';
+const CLASSNAME_TIMEPICKER_POPUP = 'time-picker-popup';
+const CLASSNAME_TIMEPICKER_POPUP_DONE = 'time-picker-popup-done';
 
 /**
  * Configures the timer's duration, given an amount of hours, mins and secs.
@@ -21,66 +28,81 @@ const CLASSNAME_BASE = 'setup';
 class DurationConfig extends React.Component {
   constructor(props) {
     super(props);
+    const hoursField = getHoursFieldFromDuration(props.duration);
+    const minsField = getMinsFieldFromDuration(props.duration);
+    const secsField = getSecsFieldFromDuration(props.duration);
+    const momentForDuration = moment();
+    momentForDuration.hour(hoursField);
+    momentForDuration.minute(minsField);
+    momentForDuration.second(secsField);
+
     this.state = {
-      secsField: getSecsFieldFromDuration(props.duration),
-      minsField: getMinsFieldFromDuration(props.duration),
-      hoursField: getHoursFieldFromDuration(props.duration),
+      momentForDuration,
+      showTimePicker: false,
     };
-    this.updateHours = this.updateHours.bind(this);
-    this.updateMins = this.updateMins.bind(this);
-    this.updateSecs = this.updateSecs.bind(this);
+
     this.updateDuration = this.updateDuration.bind(this);
+    this.toggleShowTimePicker = this.toggleShowTimePicker.bind(this);
+    this.renderAddon = this.renderAddon.bind(this);
+    this.renderOpenTimePickerButton = this.renderOpenTimePickerButton.bind(this);
   }
 
-  updateHours(time) {
-    const { minsField, secsField } = this.state;
-    const hoursField = time.hour();
-    this.setState({ hoursField });
-    this.updateDuration(hoursField, minsField, secsField);
-  }
-
-  updateMins(time) {
-    const { hoursField, secsField } = this.state;
-    const minsField = time.minute();
-    this.setState({ minsField });
-    this.updateDuration(hoursField, minsField, secsField);
-  }
-
-  updateSecs(time) {
-    const { hoursField, minsField } = this.state;
-    const secsField = time.second();
-    this.setState({ secsField });
-    this.updateDuration(hoursField, minsField, secsField);
-  }
-
-  updateDuration(hoursField, minsField, secsField) {
-    const duration = (hoursField * 3600) + (minsField * 60) + secsField;
+  updateDuration(time) {
+    this.setState({ momentForDuration: time });
+    const hours = time.hour();
+    const mins = time.minutes();
+    const secs = time.second();
+    const duration = (hours * 3600) + (mins * 60) + secs;
     this.props.onDurationChange(duration);
   }
 
+  toggleShowTimePicker() {
+    this.setState({ showTimePicker: !this.state.showTimePicker });
+  }
+
+  renderAddon() {
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={this.toggleShowTimePicker}
+          className={CLASSNAME_TIMEPICKER_POPUP_DONE}
+        >
+          Done
+        </button>
+      </div>
+    );
+  }
+
+  renderOpenTimePickerButton() {
+    return (
+      <button
+        type="button"
+        onClick={this.toggleShowTimePicker}
+        className={CLASSNAME_OPEN_TIMEPICKER_POPUP}
+      >
+        { this.state.momentForDuration.format('HH:mm:ss') }
+      </button>
+    );
+  }
+
   render() {
-    const { hoursField, minsField, secsField } = this.state;
+    const { momentForDuration, showTimePicker } = this.state;
 
     return (
       <div className={CLASSNAME_BASE}>
-        <TimePicker
-          value={moment().hour(hoursField)}
-          showMinute={false}
-          showSecond={false}
-          onChange={this.updateHours}
-        />
-        <TimePicker
-          value={moment().minute(minsField)}
-          showHour={false}
-          showSecond={false}
-          onChange={this.updateMins}
-        />
-        <TimePicker
-          value={moment().second(secsField)}
-          showHour={false}
-          showMinute={false}
-          onChange={this.updateSecs}
-        />
+        { showTimePicker ? null : this.renderOpenTimePickerButton() }
+        <div className={cx(CLASSNAME_BASE, CLASSNAME_INPUT_CONTAINER)}>
+          <TimePicker
+            value={momentForDuration}
+            onChange={this.updateDuration}
+            allowEmpty={false}
+            addon={this.renderAddon}
+            open={showTimePicker}
+            className={CLASSNAME_TIMEPICKER}
+            popupClassName={CLASSNAME_TIMEPICKER_POPUP}
+          />
+        </div>
       </div>
     );
   }

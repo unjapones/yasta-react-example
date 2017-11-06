@@ -1,0 +1,54 @@
+.setup {
+  font-size: 1rem;
+}
+
+.setup .input-container {
+  display: none;
+}
+
+.setup .open-time-picker {
+  font-size: 3.5em;
+  width: 100%;
+  background: none;
+  border:none;
+}
+
+.time-picker-popup.rc-time-picker-panel {
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  font-size: 2rem;
+}
+
+.time-picker-popup .rc-time-picker-panel-inner {
+  width: 100%;
+  height: 80vh;
+}
+
+.time-picker-popup .rc-time-picker-panel-combobox {
+  height: 80%;
+}
+
+.time-picker-popup .rc-time-picker-panel-select {
+  width: 33.33%;
+  font-size: 2em;
+  max-height: 100%;
+}
+
+.time-picker-popup .rc-time-picker-panel-select li {
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  padding: 0;
+}
+
+.time-picker-popup .rc-time-picker-panel-input {
+  font-size: 4em;
+  text-align: center;
+}
+
+.time-picker-popup .time-picker-popup-done {
+  font-size: 3em;
+  width: 100%;
+}
