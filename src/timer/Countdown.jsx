@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import CircularProgressbar from 'react-circular-progressbar';
@@ -41,8 +42,15 @@ export function Countdown(props) {
       percentage={percentage}
       className={className}
       background={remainingTime === 0}
+      strokeWidth={2}
     />
   );
 }
+
+Countdown.propTypes = {
+  duration: PropTypes.number.isRequired,
+  remainingTime: PropTypes.number.isRequired,
+  isTicking: PropTypes.bool.isRequired,
+};
 
 export default Countdown;

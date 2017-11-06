@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import cx from 'classnames';
 
@@ -107,5 +108,10 @@ class DurationConfig extends React.Component {
     );
   }
 }
+
+DurationConfig.propTypes = {
+  duration: PropTypes.number.isRequired,
+  onDurationChange: PropTypes.func.isRequired,
+};
 
 export default DurationConfig;
