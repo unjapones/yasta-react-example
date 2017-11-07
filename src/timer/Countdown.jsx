@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import CircularProgressbar from 'react-circular-progressbar';
 import './Countdown.css';
 
 import {
@@ -13,11 +12,8 @@ import {
 
 const CLASSNAME_BASE = 'countdown';
 
-/**
- * Countdown that displays time left in seconds.
- */
 export function Countdown(props) {
-  const { isTicking, remainingTime, duration } = props;
+  const { isTicking, remainingTime, onClick } = props;
 
   const hours = getHoursFieldFromDuration(remainingTime);
   const mins = getMinsFieldFromDuration(remainingTime);
@@ -28,8 +24,6 @@ export function Countdown(props) {
   const secsPadded = secs < 10 ? `0${secs}` : secs;
   const timeLeftString = `${hoursPadded}:${minsPadded}:${secsPadded}`;
 
-  const percentage = 100 - Math.floor((remainingTime / duration) * 100);
-
   const className = cx({
     [CLASSNAME_BASE]: true,
     paused: remainingTime > 0 && !isTicking,
@@ -37,20 +31,21 @@ export function Countdown(props) {
   });
 
   return (
-    <CircularProgressbar
-      textForPercentage={() => timeLeftString}
-      percentage={percentage}
+    <button
+      type="button"
+      onClick={onClick}
       className={className}
-      background={remainingTime === 0}
-      strokeWidth={2}
-    />
+      disabled={remainingTime === 0}
+    >
+      {timeLeftString}
+    </button>
   );
 }
 
 Countdown.propTypes = {
-  duration: PropTypes.number.isRequired,
   remainingTime: PropTypes.number.isRequired,
   isTicking: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Countdown;

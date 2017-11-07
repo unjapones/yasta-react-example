@@ -1,7 +1,9 @@
 import React from 'react';
 import cx from 'classnames';
 
+import { Progressbar } from './Progressbar';
 import { Countdown } from './Countdown';
+import { StartReset } from './StartReset';
 import DurationConfig from './DurationConfig';
 
 import './Timer.css';
@@ -9,9 +11,6 @@ import './Timer.css';
 const DEFAULT_DURATION = 4; // Seconds
 const CLASSNAME_BASE = 'timer';
 const CLASSNAME_COUNTDOWN = 'countdown';
-const CLASSNAME_BUTTON_TOGGLE_PAUSE = 'toggle-pause';
-const CLASSNAME_BUTTON_RESET = 'reset';
-const CLASSNAME_BUTTON_START = 'start';
 
 class Timer extends React.Component {
   constructor(props) {
@@ -30,8 +29,6 @@ class Timer extends React.Component {
     this.pause = this.pause.bind(this);
     this.resume = this.resume.bind(this);
     this.reset = this.reset.bind(this);
-    this.renderDurationConfig = this.renderDurationConfig.bind(this);
-    this.renderStarted = this.renderStarted.bind(this);
   }
 
   setNewDuration(duration) {
@@ -85,64 +82,45 @@ class Timer extends React.Component {
     });
   }
 
-  renderDurationConfig() {
-    const { duration } = this.state;
-    return (
-      <div className={CLASSNAME_BASE}>
-        <DurationConfig
-          duration={duration}
-          onDurationChange={this.setNewDuration}
-        />
-        <button
-          type="button"
-          className={CLASSNAME_BUTTON_START}
-          onClick={this.start}
-          disabled={duration <= 0}
-        >
-          Start
-        </button>
-      </div>
-    );
-  }
+  render() {
+    const {
+      isTicking,
+      duration,
+      remainingTime,
+      isDurationConfigured,
+    } = this.state;
 
-  renderStarted() {
-    const pauseResumeButton = (
-      <button
-        type="button"
-        className={CLASSNAME_BUTTON_TOGGLE_PAUSE}
-        onClick={this.state.isTicking ? this.pause : this.resume}
-        disabled={this.state.remainingTime === 0}
-      >
-        { this.state.isTicking ? 'Pause' : 'Resume' }
-      </button>
-    );
-    const resetButton = (
-      <button
-        type="button"
-        className={CLASSNAME_BUTTON_RESET}
-        onClick={this.reset}
-      >
-        Reset
-      </button>
+    const countdownComponent =
+      (
+        <Countdown
+          isTicking={isTicking}
+          remainingTime={remainingTime}
+          onClick={isTicking ? this.pause : this.resume}
+        />
+      );
+    const durationConfigComponent =
+    (
+      <DurationConfig
+        duration={duration}
+        onDurationChange={this.setNewDuration}
+      />
     );
 
     return (
       <div className={cx(CLASSNAME_BASE, CLASSNAME_COUNTDOWN)}>
-        <Countdown
-          isTicking={this.state.isTicking}
-          duration={this.state.duration}
-          remainingTime={this.state.remainingTime}
+        <Progressbar
+          isTicking={isTicking}
+          duration={duration}
+          remainingTime={remainingTime}
         />
-        { pauseResumeButton }
-        { resetButton }
+        { isDurationConfigured ? countdownComponent : durationConfigComponent }
+        <StartReset
+          isDurationConfigured={isDurationConfigured}
+          onStart={this.start}
+          onReset={this.reset}
+        />
       </div>
     );
-  }
-
-  render() {
-    return this.state.isDurationConfigured ?
-      this.renderStarted() :
-      this.renderDurationConfig();
   }
 }
 
