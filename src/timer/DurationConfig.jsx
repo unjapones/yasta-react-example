@@ -4,7 +4,6 @@ import moment from 'moment';
 import cx from 'classnames';
 
 import TimePicker from 'rc-time-picker';
-import 'rc-time-picker/assets/index.css';
 
 import {
   getSecsFieldFromDuration,
