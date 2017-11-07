@@ -5,7 +5,7 @@ import cx from 'classnames';
 import CircularProgressbar from 'react-circular-progressbar';
 import './Progressbar.css';
 
-const CLASSNAME_BASE = 'countdown';
+const CLASSNAME_BASE = 'progressbar';
 
 export function Progressbar(props) {
   const { isTicking, remainingTime, duration } = props;

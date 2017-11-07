@@ -38,9 +38,6 @@
 .CircularProgressbar.paused .CircularProgressbar-path {
   stroke: #a9a9a9;
 }
-.CircularProgressbar.paused .CircularProgressbar-text {
-  fill: #a9a9a9;
-}
 
 .CircularProgressbar.done .CircularProgressbar-path {
   stroke: none;
@@ -50,7 +47,4 @@
 }
 .CircularProgressbar.done .CircularProgressbar-background {
   fill: #ff0000;
-}
-.CircularProgressbar.done .CircularProgressbar-text {
-  fill: #fff;
 }

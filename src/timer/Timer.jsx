@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'classnames';
 
 import { Progressbar } from './Progressbar';
 import { Countdown } from './Countdown';
@@ -10,7 +9,6 @@ import './Timer.css';
 
 const DEFAULT_DURATION = 4; // Seconds
 const CLASSNAME_BASE = 'timer';
-const CLASSNAME_COUNTDOWN = 'countdown';
 
 class Timer extends React.Component {
   constructor(props) {
@@ -32,7 +30,11 @@ class Timer extends React.Component {
   }
 
   setNewDuration(duration) {
-    this.setState({ duration: duration || 0 });
+    const newDuration = duration || 0;
+    this.setState({
+      duration: newDuration,
+      remainingTime: newDuration,
+    });
   }
 
   createCountDown() {
@@ -79,6 +81,7 @@ class Timer extends React.Component {
       isDurationConfigured: false,
       isTicking: false,
       intervalId: null,
+      remainingTime: this.state.duration,
     });
   }
 
@@ -107,7 +110,7 @@ class Timer extends React.Component {
     );
 
     return (
-      <div className={cx(CLASSNAME_BASE, CLASSNAME_COUNTDOWN)}>
+      <div className={CLASSNAME_BASE}>
         <Progressbar
           isTicking={isTicking}
           duration={duration}

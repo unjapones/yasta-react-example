@@ -1,0 +1,15 @@
+.countdown {
+  font-size: 3.5em;
+  width: 100%;
+  background: none;
+  border:none;
+  outline: none;
+}
+
+.countdown.paused {
+  color: #a9a9a9;
+}
+
+.countdown.done {
+  color: #fff;
+}

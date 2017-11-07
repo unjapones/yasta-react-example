@@ -69,7 +69,7 @@ class DurationConfig extends React.Component {
           onClick={this.toggleShowTimePicker}
           className={CLASSNAME_TIMEPICKER_POPUP_DONE}
         >
-          Done
+          <span role="img" aria-label="Ok">🆗</span>
         </button>
       </div>
     );

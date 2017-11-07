@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './StartReset.css';
+
 const CLASSNAME_BUTTON_RESET = 'reset';
 const CLASSNAME_BUTTON_START = 'start';
 
@@ -12,7 +14,7 @@ export function StartReset(props) {
       className={CLASSNAME_BUTTON_START}
       onClick={onStart}
     >
-      Start
+      <span role="img" aria-label="Start">▶️</span>
     </button>
   );
   const resetButton = (
@@ -21,7 +23,7 @@ export function StartReset(props) {
       className={CLASSNAME_BUTTON_RESET}
       onClick={onReset}
     >
-      Reset
+      <span role="img" aria-label="Cancel">❌</span>
     </button>
   );
 
