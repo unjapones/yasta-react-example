@@ -11,20 +11,21 @@ export function Progressbar(props) {
   const { isTicking, remainingTime, duration } = props;
   const percentage = 100 - Math.floor((remainingTime / duration) * 100);
 
-  const className = cx({
-    [CLASSNAME_BASE]: true,
+  const statusClassName = cx({
     paused: remainingTime > 0 && !isTicking,
     done: remainingTime === 0,
   });
 
   return (
-    <CircularProgressbar
-      textForPercentage={() => ''}
-      percentage={percentage}
-      className={className}
-      background={remainingTime === 0}
-      strokeWidth={2}
-    />
+    <div className={CLASSNAME_BASE}>
+      <CircularProgressbar
+        className={statusClassName}
+        textForPercentage={() => ''}
+        percentage={percentage}
+        background={remainingTime === 0}
+        strokeWidth={2}
+      />
+    </div>
   );
 }
 
