@@ -1,9 +1,22 @@
+@media all and (orientation:portrait) {
+  .timer {
+    width: 90%;
+    height: 80vh;
+  }
+}
+
+@media all and (orientation:landscape) {
+  .timer {
+    width: 80vh;
+    height: 100vh;
+  }
+}
+
 .timer {
+  margin-left: auto;
+  margin-right: auto;
+
   display: grid;
-
-  width: 100%;
-  height: 80vh;
-
   grid-template-columns: 1fr;
   grid-template-rows: 7fr 1fr;
   grid-gap: 1rem;
