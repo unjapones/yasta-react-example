@@ -7,7 +7,8 @@ import DurationConfig from './DurationConfig';
 
 import './Timer.css';
 
-const DEFAULT_DURATION = 4; // Seconds
+const DEFAULT_DURATION = 4000; // in [ms]
+const INTERVAL_STEP = 1000; // in [ms]
 const CLASSNAME_BASE = 'timer';
 
 class Timer extends React.Component {
@@ -44,10 +45,10 @@ class Timer extends React.Component {
           clearInterval(this.state.intervalId);
           this.setState({ isTicking: false });
         } else {
-          this.setState({ remainingTime: this.state.remainingTime - 1 });
+          this.setState({ remainingTime: this.state.remainingTime - INTERVAL_STEP });
         }
       },
-      1000,
+      INTERVAL_STEP,
     );
   }
 

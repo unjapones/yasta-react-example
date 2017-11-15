@@ -13,7 +13,8 @@ import {
 const CLASSNAME_BASE = 'countdown';
 
 export function Countdown(props) {
-  const { isTicking, remainingTime, onClick } = props;
+  const { isTicking, onClick } = props;
+  const remainingTime = Math.floor(props.remainingTime / 1000);
 
   const hours = getHoursFieldFromDuration(remainingTime);
   const mins = getMinsFieldFromDuration(remainingTime);

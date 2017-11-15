@@ -28,9 +28,11 @@ const CLASSNAME_TIMEPICKER_POPUP_DONE = 'time-picker-popup-done';
 class DurationConfig extends React.Component {
   constructor(props) {
     super(props);
-    const hoursField = getHoursFieldFromDuration(props.duration);
-    const minsField = getMinsFieldFromDuration(props.duration);
-    const secsField = getSecsFieldFromDuration(props.duration);
+    const duration = Math.floor(props.duration / 1000);
+
+    const hoursField = getHoursFieldFromDuration(duration);
+    const minsField = getMinsFieldFromDuration(duration);
+    const secsField = getSecsFieldFromDuration(duration);
     const momentForDuration = moment();
     momentForDuration.hour(hoursField);
     momentForDuration.minute(minsField);
@@ -53,7 +55,8 @@ class DurationConfig extends React.Component {
     const mins = time.minutes();
     const secs = time.second();
     const duration = (hours * 3600) + (mins * 60) + secs;
-    this.props.onDurationChange(duration);
+    // Multiply duration by 1000 to get it in [ms]
+    this.props.onDurationChange(duration * 1000);
   }
 
   toggleShowTimePicker() {
