@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button changes from Start to Reset after duration is configured 1`] = `
+<button
+  className="start"
+  onClick={[Function]}
+  type="button"
+>
+  <span
+    aria-label="Start"
+    role="img"
+  >
+    ▶️
+  </span>
+</button>
+`;
+
+exports[`Button changes from Start to Reset after duration is configured 2`] = `
+<button
+  className="reset"
+  onClick={[Function]}
+  type="button"
+>
+  <span
+    aria-label="Cancel"
+    role="img"
+  >
+    ❌
+  </span>
+</button>
+`;

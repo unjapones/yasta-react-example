@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`class in SVG changes when remainingTime is zero 1`] = `
+<div
+  className="progressbar"
+>
+  <svg
+    className="CircularProgressbar paused "
+    viewBox="0 0 100 100"
+  >
+    <path
+      className="CircularProgressbar-trail"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+    />
+    <path
+      className="CircularProgressbar-path"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+      style={
+        Object {
+          "strokeDasharray": "307.8760800517997px 307.8760800517997px",
+          "strokeDashoffset": "0px",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
+
+exports[`class in SVG changes when remainingTime is zero 2`] = `
+<div
+  className="progressbar"
+>
+  <svg
+    className="CircularProgressbar done "
+    viewBox="0 0 100 100"
+  >
+    <circle
+      className="CircularProgressbar-background"
+      cx={50}
+      cy={50}
+      r={50}
+    />
+    <path
+      className="CircularProgressbar-trail"
+      d="
+          M 50,50 m 0,-47
+          a 47,47 0 1 1 0,94
+          a 47,47 0 1 1 0,-94
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+    />
+    <path
+      className="CircularProgressbar-path"
+      d="
+          M 50,50 m 0,-47
+          a 47,47 0 1 1 0,94
+          a 47,47 0 1 1 0,-94
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+      style={
+        Object {
+          "strokeDasharray": "295.3097094374406px 295.3097094374406px",
+          "strokeDashoffset": "295.3097094374406px",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
+
+exports[`class in SVG changes when remainingTime is zero and isTicking is truthy 1`] = `
+<div
+  className="progressbar"
+>
+  <svg
+    className="CircularProgressbar paused "
+    viewBox="0 0 100 100"
+  >
+    <path
+      className="CircularProgressbar-trail"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+    />
+    <path
+      className="CircularProgressbar-path"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+      style={
+        Object {
+          "strokeDasharray": "307.8760800517997px 307.8760800517997px",
+          "strokeDashoffset": "0px",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
+
+exports[`class in SVG changes when remainingTime is zero and isTicking is truthy 2`] = `
+<div
+  className="progressbar"
+>
+  <svg
+    className="CircularProgressbar  "
+    viewBox="0 0 100 100"
+  >
+    <path
+      className="CircularProgressbar-trail"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+    />
+    <path
+      className="CircularProgressbar-path"
+      d="
+          M 50,50 m 0,-49
+          a 49,49 0 1 1 0,98
+          a 49,49 0 1 1 0,-98
+        "
+      fillOpacity={0}
+      strokeWidth={2}
+      style={
+        Object {
+          "strokeDasharray": "307.8760800517997px 307.8760800517997px",
+          "strokeDashoffset": "153.93804002589985px",
+        }
+      }
+    />
+  </svg>
+</div>
+`;
