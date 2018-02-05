@@ -10,9 +10,9 @@ import {
   tick
 } from '../../store/Timer/actions';
 
-import { Progressbar } from './Progressbar';
-import { Countdown } from './Countdown';
-import { StartReset } from './StartReset';
+import { Progressbar } from '../presentation/Progressbar';
+import { Countdown } from '../presentation/Countdown';
+import { StartReset } from '../presentation/StartReset';
 import DurationConfig from './DurationConfig';
 
 import './Timer.css';

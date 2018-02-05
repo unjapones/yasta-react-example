@@ -9,7 +9,7 @@ import {
   getSecsFieldFromDuration,
   getMinsFieldFromDuration,
   getHoursFieldFromDuration,
-} from './durationHelpers';
+} from '../../common/durationHelpers';
 import './DurationConfig.css';
 
 const CLASSNAME_BASE = 'setup';
