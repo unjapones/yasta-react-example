@@ -10,15 +10,10 @@ import {
   tick
 } from '../../store/Timer/actions';
 
-import { Progressbar } from '../presentation/Progressbar';
-import { Countdown } from '../presentation/Countdown';
-import { StartReset } from '../presentation/StartReset';
-import DurationConfig from './DurationConfig';
+import { Timer } from '../presentation/Timer';
 
-import './Timer.css';
 
 const INTERVAL_STEP = 1000; // in [ms]
-const CLASSNAME_BASE = 'timer';
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -42,7 +37,7 @@ const mapStateToProps = state => {
   };
 }
 
-class Timer extends React.Component {
+class TimerContainer extends React.Component {
   constructor(props) {
     super(props);
     this.createCountDown = this.createCountDown.bind(this);
@@ -91,36 +86,22 @@ class Timer extends React.Component {
       setNewDuration,
     } = this.props;
 
-    const countdownComponent =
-      (
-        <Countdown isTicking={isTicking}
-          remainingTime={remainingTime}
-          onClick={isTicking ? this.pauseTimer : this.resumeTimer}
-        />
-      );
-    const durationConfigComponent =
-      (
-        <DurationConfig duration={duration} onDurationChange={setNewDuration} />
-      );
-
     return (
-      <div className={CLASSNAME_BASE}>
-        <Progressbar
-          isTicking={isTicking}
-          duration={duration}
-          remainingTime={remainingTime}
-        />
-        { isDurationConfigured ? countdownComponent : durationConfigComponent }
-        <StartReset
-          isDurationConfigured={isDurationConfigured}
-          onStart={this.startTimer}
-          onReset={this.resetTimer}
-        />
-      </div>
+      <Timer
+        isTicking={isTicking}
+        duration={duration}
+        remainingTime={remainingTime}
+        isDurationConfigured={isDurationConfigured}
+        setNewDuration={setNewDuration}
+        start={this.startTimer}
+        pause={this.pauseTimer}
+        resume={this.resumeTimer}
+        reset={this.resetTimer}
+      />
     );
   }
 }
 
-const TimerContainer = connect(mapStateToProps, mapDispatchToProps)(Timer);
+const TimerContainerRedux = connect(mapStateToProps, mapDispatchToProps)(TimerContainer);
 
-export default TimerContainer;
+export default TimerContainerRedux;
