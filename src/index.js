@@ -1,11 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import './index.css';
-
-import Timer from './timer/Timer';
+import TimerContainerRedux from './components/containers/Timer';
 
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<Timer />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <TimerContainerRedux />
+  </Provider>,
+  document.getElementById('root')
+);
+
 registerServiceWorker();

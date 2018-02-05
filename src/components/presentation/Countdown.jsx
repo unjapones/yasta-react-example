@@ -8,7 +8,7 @@ import {
   getSecsFieldFromDuration,
   getMinsFieldFromDuration,
   getHoursFieldFromDuration,
-} from './durationHelpers';
+} from '../../common/durationHelpers';
 
 const CLASSNAME_BASE = 'countdown';
 
