@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Progressbar } from './Progressbar';
 import { Countdown } from './Countdown';
 import { StartReset } from './StartReset';
-import DurationConfig from '../containers/DurationConfig';
+import DurationConfigContainer from '../containers/DurationConfig';
 
 import './Timer.css';
 
@@ -31,7 +32,7 @@ export function Timer(props) {
     );
   const durationConfigComponent =
     (
-      <DurationConfig duration={duration} onDurationChange={setNewDuration} />
+      <DurationConfigContainer duration={duration} onDurationChange={setNewDuration} />
     );
 
   return (
@@ -51,5 +52,24 @@ export function Timer(props) {
   );
 }
 
-// @TODO: define props type, requirement, etc
+Timer.propTypes = {
+  // Indicates if the timer is ticking
+  isTicking: PropTypes.bool.isRequired,
+  // Duration (in [ms]) of the timer
+  duration: PropTypes.number.isRequired,
+  // Remaining time (in [ms]) of the timer
+  remainingTime: PropTypes.number.isRequired,
+  // Indicates if the timer's duration has been configured
+  isDurationConfigured: PropTypes.bool.isRequired,
+  // Callback to invoke with the new duration (in [ms] that has been picked.
+  setNewDuration: PropTypes.func.isRequired,
+  // Callback to invoke on start
+  start: PropTypes.func.isRequired,
+  // Callback to invoke on pause
+  pause: PropTypes.func.isRequired,
+  // Callback to invoke on resume
+  resume: PropTypes.func.isRequired,
+  // Callback to invoke on reset
+  reset: PropTypes.func.isRequired,
+};
 
