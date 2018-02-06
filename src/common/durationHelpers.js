@@ -3,7 +3,7 @@ export function getSecsFieldFromDuration(duration) {
 }
 
 export function getMinsFieldFromDuration(duration) {
-  return Math.floor((duration % (3600)) / 60);
+  return Math.floor((duration % 3600) / 60);
 }
 
 export function getHoursFieldFromDuration(duration) {

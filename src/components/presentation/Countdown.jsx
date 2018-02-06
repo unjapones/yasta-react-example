@@ -7,7 +7,7 @@ import './Countdown.css';
 import {
   getSecsFieldFromDuration,
   getMinsFieldFromDuration,
-  getHoursFieldFromDuration,
+  getHoursFieldFromDuration
 } from '../../common/durationHelpers';
 
 const CLASSNAME_BASE = 'countdown';
@@ -28,7 +28,7 @@ export function Countdown(props) {
   const className = cx({
     [CLASSNAME_BASE]: true,
     paused: remainingTime > 0 && !isTicking,
-    done: remainingTime === 0,
+    done: remainingTime === 0
   });
 
   return (
@@ -46,7 +46,7 @@ export function Countdown(props) {
 Countdown.propTypes = {
   remainingTime: PropTypes.number.isRequired,
   isTicking: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default Countdown;

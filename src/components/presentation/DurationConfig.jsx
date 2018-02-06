@@ -22,7 +22,9 @@ export function DurationConfig(props) {
           onClick={props.onToggleShow}
           className={CLASSNAME_TIMEPICKER_POPUP_DONE}
         >
-          <span role="img" aria-label="Ok">🆗</span>
+          <span role="img" aria-label="Ok">
+            🆗
+          </span>
         </button>
       </div>
     );
@@ -35,7 +37,7 @@ export function DurationConfig(props) {
         onClick={props.onToggleShow}
         className={CLASSNAME_OPEN_TIMEPICKER_POPUP}
       >
-        { props.momentForDuration.format('HH:mm:ss') }
+        {props.momentForDuration.format('HH:mm:ss')}
       </button>
     );
   }
@@ -44,7 +46,7 @@ export function DurationConfig(props) {
 
   return (
     <div className={CLASSNAME_BASE}>
-      { show ? null : renderOpenTimePickerButton(props) }
+      {show ? null : renderOpenTimePickerButton(props)}
       <div className={cx(CLASSNAME_BASE, CLASSNAME_INPUT_CONTAINER)}>
         <TimePicker
           value={momentForDuration}
@@ -65,7 +67,7 @@ DurationConfig.propTypes = {
   momentForDuration: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  onToggleShow: PropTypes.func.isRequired,
+  onToggleShow: PropTypes.func.isRequired
 };
 
 export default DurationConfig;

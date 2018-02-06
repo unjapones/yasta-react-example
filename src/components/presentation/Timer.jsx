@@ -20,20 +20,22 @@ export function Timer(props) {
     start,
     pause,
     resume,
-    reset,
+    reset
   } = props;
 
-  const countdownComponent =
-    (
-      <Countdown isTicking={isTicking}
-        remainingTime={remainingTime}
-        onClick={isTicking ? pause : resume}
-      />
-    );
-  const durationConfigComponent =
-    (
-      <DurationConfigContainer duration={duration} onDurationChange={setNewDuration} />
-    );
+  const countdownComponent = (
+    <Countdown
+      isTicking={isTicking}
+      remainingTime={remainingTime}
+      onClick={isTicking ? pause : resume}
+    />
+  );
+  const durationConfigComponent = (
+    <DurationConfigContainer
+      duration={duration}
+      onDurationChange={setNewDuration}
+    />
+  );
 
   return (
     <div className={CLASSNAME_BASE}>
@@ -42,7 +44,7 @@ export function Timer(props) {
         duration={duration}
         remainingTime={remainingTime}
       />
-      { isDurationConfigured ? countdownComponent : durationConfigComponent }
+      {isDurationConfigured ? countdownComponent : durationConfigComponent}
       <StartReset
         isDurationConfigured={isDurationConfigured}
         onStart={start}
@@ -70,6 +72,5 @@ Timer.propTypes = {
   // Callback to invoke on resume
   resume: PropTypes.func.isRequired,
   // Callback to invoke on reset
-  reset: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
 };
-

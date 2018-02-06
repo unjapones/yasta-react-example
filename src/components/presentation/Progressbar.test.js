@@ -5,12 +5,12 @@ import { Progressbar } from './Progressbar';
 const DEFAULT_PROPS = {
   duration: 4000,
   remainingTime: 4000,
-  isTicking: false,
+  isTicking: false
 };
 
 test('class in SVG changes when remainingTime is zero and isTicking is truthy', () => {
   const props = {
-    ...DEFAULT_PROPS,
+    ...DEFAULT_PROPS
   };
 
   let component = renderer.create(Progressbar(props));
@@ -22,10 +22,9 @@ test('class in SVG changes when remainingTime is zero and isTicking is truthy', 
   expect(component.toJSON()).toMatchSnapshot();
 });
 
-
 test('class in SVG changes when remainingTime is zero', () => {
   const props = {
-    ...DEFAULT_PROPS,
+    ...DEFAULT_PROPS
   };
 
   let component = renderer.create(Progressbar(props));

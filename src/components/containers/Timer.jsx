@@ -12,18 +12,29 @@ import {
 
 import { Timer } from '../presentation/Timer';
 
-
 const INTERVAL_STEP = 1000; // in [ms]
 
 const mapDispatchToProps = dispatch => {
   return {
-    setNewDuration: (duration) => { dispatch(setNewDuration(duration)); },
-    start: (intervalId) => { dispatch(start(intervalId)); },
-    pause: () => { dispatch(pause()); },
-    resume: (intervalId) => { dispatch(resume(intervalId)); },
-    reset: () => { dispatch(reset()); },
-    tick: () => { dispatch(tick()); },
-  }
+    setNewDuration: duration => {
+      dispatch(setNewDuration(duration));
+    },
+    start: intervalId => {
+      dispatch(start(intervalId));
+    },
+    pause: () => {
+      dispatch(pause());
+    },
+    resume: intervalId => {
+      dispatch(resume(intervalId));
+    },
+    reset: () => {
+      dispatch(reset());
+    },
+    tick: () => {
+      dispatch(tick());
+    }
+  };
 };
 
 const mapStateToProps = state => {
@@ -33,9 +44,9 @@ const mapStateToProps = state => {
     remainingTime: timer.remainingTime,
     isTicking: timer.isTicking,
     isDurationConfigured: timer.isDurationConfigured,
-    intervalId: timer.intervalId,
+    intervalId: timer.intervalId
   };
-}
+};
 
 class TimerContainer extends React.Component {
   constructor(props) {
@@ -48,29 +59,26 @@ class TimerContainer extends React.Component {
   }
 
   createCountDown() {
-    return setInterval(
-      () => {
-        let { remainingTime, intervalId, pause, tick } = this.props;
-        if (remainingTime === 0) {
-          clearInterval(intervalId);
-          pause();
-        } else {
-          tick();
-        }
-      },
-      INTERVAL_STEP,
-    );
+    return setInterval(() => {
+      let { remainingTime, intervalId, pause, tick } = this.props;
+      if (remainingTime === 0) {
+        clearInterval(intervalId);
+        pause();
+      } else {
+        tick();
+      }
+    }, INTERVAL_STEP);
   }
 
   startTimer() {
-    this.props.start(this.createCountDown())
+    this.props.start(this.createCountDown());
   }
   pauseTimer() {
     clearInterval(this.props.intervalId);
     this.props.pause();
   }
   resumeTimer() {
-    this.props.resume(this.createCountDown())
+    this.props.resume(this.createCountDown());
   }
   resetTimer() {
     clearInterval(this.props.intervalId);
@@ -83,7 +91,7 @@ class TimerContainer extends React.Component {
       duration,
       remainingTime,
       isDurationConfigured,
-      setNewDuration,
+      setNewDuration
     } = this.props;
 
     return (
@@ -102,6 +110,8 @@ class TimerContainer extends React.Component {
   }
 }
 
-const TimerContainerRedux = connect(mapStateToProps, mapDispatchToProps)(TimerContainer);
+const TimerContainerRedux = connect(mapStateToProps, mapDispatchToProps)(
+  TimerContainer
+);
 
 export default TimerContainerRedux;

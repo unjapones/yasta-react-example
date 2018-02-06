@@ -9,11 +9,11 @@ const CLASSNAME_BASE = 'progressbar';
 
 export function Progressbar(props) {
   const { isTicking, remainingTime, duration } = props;
-  const percentage = (remainingTime / duration) * 100;
+  const percentage = remainingTime / duration * 100;
 
   const statusClassName = cx({
     paused: remainingTime > 0 && !isTicking,
-    done: remainingTime === 0,
+    done: remainingTime === 0
   });
 
   return (
@@ -32,7 +32,7 @@ export function Progressbar(props) {
 Progressbar.propTypes = {
   duration: PropTypes.number.isRequired,
   remainingTime: PropTypes.number.isRequired,
-  isTicking: PropTypes.bool.isRequired,
+  isTicking: PropTypes.bool.isRequired
 };
 
 export default Progressbar;

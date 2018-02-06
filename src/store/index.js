@@ -3,11 +3,6 @@ import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import reducer from './reducer.js';
 
-const initialState = {
-};
+const initialState = {};
 
-export default createStore(
-  reducer,
-  initialState,
-  devToolsEnhancer(),
-);
+export default createStore(reducer, initialState, devToolsEnhancer());

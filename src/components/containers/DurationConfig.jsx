@@ -5,7 +5,7 @@ import moment from 'moment';
 import {
   getSecsFieldFromDuration,
   getMinsFieldFromDuration,
-  getHoursFieldFromDuration,
+  getHoursFieldFromDuration
 } from '../../common/durationHelpers';
 
 import DurationConfig from '../presentation/DurationConfig';
@@ -25,7 +25,7 @@ class DurationConfigContainer extends React.Component {
 
     this.state = {
       momentForDuration,
-      show: false,
+      show: false
     };
 
     this.updateDuration = this.updateDuration.bind(this);
@@ -41,7 +41,7 @@ class DurationConfigContainer extends React.Component {
     const hours = time.hour();
     const mins = time.minutes();
     const secs = time.second();
-    const duration = (hours * 3600) + (mins * 60) + secs;
+    const duration = hours * 3600 + mins * 60 + secs;
     // Multiply duration by 1000 to get it in [ms]
     this.props.onDurationChange(duration * 1000);
   }
@@ -68,7 +68,7 @@ DurationConfigContainer.propTypes = {
   // The current duration (in [ms])
   duration: PropTypes.number.isRequired,
   // Callback to invoke after a duration (in [ms] has been picked.
-  onDurationChange: PropTypes.func.isRequired,
+  onDurationChange: PropTypes.func.isRequired
 };
 
 export default DurationConfigContainer;

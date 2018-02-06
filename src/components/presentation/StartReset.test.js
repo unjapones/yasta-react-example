@@ -6,8 +6,8 @@ import { StartReset } from './StartReset';
 const DEFAULT_PROPS = {
   isDurationConfigured: false,
   onStart: () => {},
-  onReset: () => {},
-}
+  onReset: () => {}
+};
 
 test('Button changes from Start to Reset after duration is configured', () => {
   const props = {
@@ -25,7 +25,7 @@ test('Button changes from Start to Reset after duration is configured', () => {
 test('When duration is not configured, click trigger onStart', () => {
   const props = {
     ...DEFAULT_PROPS,
-    onStart: jest.fn(),
+    onStart: jest.fn()
   };
 
   const component = shallow(StartReset(props));
@@ -37,7 +37,7 @@ test('When duration is configured, click trigger onReset', () => {
   const props = {
     ...DEFAULT_PROPS,
     isDurationConfigured: true,
-    onReset: jest.fn(),
+    onReset: jest.fn()
   };
 
   const component = shallow(StartReset(props));

@@ -1,11 +1,11 @@
-@media all and (orientation:portrait) {
+@media all and (orientation: portrait) {
   .timer {
     width: 90%;
     height: 80vh;
   }
 }
 
-@media all and (orientation:landscape) {
+@media all and (orientation: landscape) {
   .timer {
     width: 80vh;
     height: 100vh;
