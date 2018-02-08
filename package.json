@@ -19,9 +19,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write \"src/**/*.{js,jsx,json,css}\""
+    "prettier": "prettier --write \"src/**/*.{js,jsx,json,css}\"",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.12",
+    "@storybook/addon-knobs": "^3.3.12",
+    "@storybook/addon-links": "^3.3.12",
+    "@storybook/addon-notes": "^3.3.12",
+    "@storybook/addons": "^3.3.12",
+    "@storybook/react": "^3.3.12",
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
